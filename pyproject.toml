@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "moirae-android"
+version = "0.1.0"
+description = "Independent multimodal ReAct agents for Android malware evidence analysis"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic==2.13.4",
+  "pydantic-ai==2.7.0",
+  "openai==2.44.0",
+  "Pillow==12.3.0",
+  "tqdm==4.68.3",
+]
+
+[project.scripts]
+moirae-analyze = "moirae.reasoning.cli:main"
+moirae-collect = "moirae.collection.runner:main"
+moirae-reduce = "moirae.preprocessing.trace_reducer:main"
+
+[tool.setuptools.packages.find]
+include = ["moirae*"]
+
+[tool.setuptools.package-data]
+moirae = ["resources/*.txt"]
