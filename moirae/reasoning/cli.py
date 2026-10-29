@@ -12,7 +12,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="PydanticAI multi-agent Android malware reasoning over dynamic evidence."
     )
-    parser.add_argument("--agent-report", type=Path, default=AGENT_REPORT_DIR, help="A fused JSON report or directory from trace_reducer.py.")
+    parser.add_argument("--agent-report", type=Path, default=AGENT_REPORT_DIR, help="A fused JSON report or directory produced by moirae-reduce.")
     parser.add_argument("--output-dir", type=Path, default=REASONING_OUTPUT_DIR, help="Directory for multi-agent reasoning outputs.")
     parser.add_argument(
         "--agent-retries",
@@ -53,5 +53,9 @@ def main() -> None:
     if sys.platform.startswith("win"):
         asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
     asyncio.run(main_async())
+
+
+if __name__ == "__main__":
+    main()
 
 
