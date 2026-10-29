@@ -29,7 +29,8 @@ DROIDBOT_OUTPUT_DIR = DATASET_ROOT / "droidbot_out" / "benign"
 # Resolve executable names on PATH while retaining Path arguments throughout the runner.
 import shutil
 def executable_path(variable, command):
-    return Path(os.getenv(variable) or shutil.which(command) or command)
+    configured = os.getenv(variable) or command
+    return Path(shutil.which(configured) or configured)
 AAPT_PATH = executable_path("ANDROID_AAPT", "aapt")
 ADB_PATH = executable_path("ANDROID_ADB", "adb")
 EMULATOR_PATH = executable_path("ANDROID_EMULATOR", "emulator")
